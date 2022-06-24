@@ -8,6 +8,9 @@ Hangman::Hangman(std::string secret)
 	for (int i = 0; i < secret.length(); ++i)
 	{
 		guessWord[i] = '_';
+		//guessWord[i] = ' ';
+		
+		
 	}
 	for (int i = 0; i < 26; ++i)
 	{
@@ -29,10 +32,12 @@ std::string Hangman::getAlphabet()
 		if (!alphabet[i])
 		{
 			result += 'a' + i;
+			result += ' ';
 		}
 		else
 		{
 			result += '_';
+			result += ' ';
 		}
 	}
 	return result;
