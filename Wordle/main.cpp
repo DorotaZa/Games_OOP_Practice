@@ -1,9 +1,20 @@
 // Wordle 
 
-#include <iostream>
 #include "Wordle.hpp"
+#include <iostream>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Wordle game("BEADY");
+
+	do
+	{
+		std::string word;
+		std::cin >> word;
+		std::string colours = game.test(word);
+		//std::cout << colours << std::endl;
+		game.draw();
+	} while (!game.isFinished());
+
+	return 0;
 }
