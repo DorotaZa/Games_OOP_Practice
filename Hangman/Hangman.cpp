@@ -8,7 +8,7 @@ Hangman::Hangman(std::string secret)
 	for (int i = 0; i < secret.length(); ++i)
 	{
 		guessWord[i] = '_';
-		//guessWord[i] = ' ';
+		//guessWord[i] = ' '; //to nie dziala bo jest przypisanie innej wartosci 
 		
 		
 	}
@@ -55,15 +55,31 @@ bool Hangman::guess(char c)
 	//}
 	//linijka nizej robi to co petla wyzej
 	alphabet[c - 'a'] = true; // int index = c - 'a'
+	bool guessed = false; //zapamaietuje fakt ze weszlam do ifa
+	std::string previous = guessWord; //zapamietanie slowa przed petla 
 	for (int i = 0; i < secret.length(); i++)
 	{
 		if (secret[i] == c)
 		{
 			guessWord[i] = c;
+			guessed = true;
+			
 		}
 	}
 	//bool result = (guessedWord == secret); // to samo co ponizej
-	return guessWord == secret;
+	
+	//if (previous == guessWord)
+	// {
+	// attempt--;
+	// }
+	//alternatywna wersja linijki nizej 
+
+	if (!guessed)
+	{
+		attempt--;
+	}
+		return (guessWord == secret) || attempt == 0;
+	
 }
 
 
@@ -71,3 +87,4 @@ std::string Hangman::getSecret()
 {
 	return secret;
 }
+
