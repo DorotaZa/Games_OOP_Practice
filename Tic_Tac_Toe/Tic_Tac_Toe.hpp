@@ -21,11 +21,29 @@ public:
 
 class Player
 {
+protected:
 	CheckerState colour;
 public:
 
 	Player(CheckerState _colour);
-	bool makeTurn(Board* board);
+	bool virtual makeTurn(Board* board) = 0;
+	//CheckerState getColour(); //pomijamy jesli zmienimy pole color na protected 
+};
+
+class AIPlayer : public Player
+{
+
+public:
+	AIPlayer(CheckerState _colour) : Player(_colour) {}
+	bool virtual makeTurn(Board* board);
+	void random(Board* board);
+};
+
+class HumanPlayer : public Player
+{
+public:
+	HumanPlayer(CheckerState _colour): Player(_colour){}
+	bool virtual makeTurn(Board* board);
 };
 
 class Game

@@ -1,5 +1,6 @@
 #include "Tic_Tac_Toe.hpp"
 #include <iostream>
+#include <random>
 
 void Game::swapPlayer()
 {
@@ -18,6 +19,7 @@ Game::Game(Player* p1, Player* p2)
 	this->player1 = p1;
 	this->player2 = p2;
 	this->currentPlayer = player1;
+	reset();
 	
 }
 
@@ -39,7 +41,7 @@ void Game::start()
 	{
 		std::cout << "Congratulations O! You won!" << std::endl;
 	}
-	reset();
+	
 }
 
 void Game::reset()
@@ -51,6 +53,7 @@ void Game::reset()
 			board.set(CheckerState::Empty, i, j);
 		}
 	}
+	
 }
 
 
@@ -144,21 +147,7 @@ Player::Player(CheckerState _colour)
 
 bool Player::makeTurn(Board* board)
 {
-	int x = 0;
-	int y = 0;
-	std::cout << "Your turn " << colour << ". Enter x, y coordinates for your next move: " << std::endl;
-	std::cin >> x;
-	std::cin >> y;
-	std::cout << std::endl;
 	
-
-	
-	if ((x >= 0 && x < 3) && (y >= 0 && y < 3))
-	{
-		board->set(colour, x, y);
-	}
-
-	return true;
 }
 
 std::ostream& operator<<(std::ostream& s, const CheckerState& cs)
@@ -193,4 +182,45 @@ std::ostream& operator<<(std::ostream& s, const Board& board)
 	}
 	std::cout << std::endl;
 	return s;
+}
+
+AIPlayer::AIPlayer()
+{
+}
+
+bool AIPlayer::makeTurn(Board* board)
+{
+	return false;
+}
+
+void AIPlayer::random(Board* board)
+{
+	std::random_device rd; // obtain a random number from hardware
+	std::mt19937 gen(rd()); // seed the generator
+	std::uniform_int_distribution<> distr(0, range); // define the range
+
+	this->hiddenNumber = distr(gen);
+}
+
+HumanPlayer::HumanPlayer()
+{
+}
+
+bool HumanPlayer::makeTurn(Board* board)
+{
+	int x = 0;
+	int y = 0;
+	std::cout << "Your turn " << colour << ". Enter x, y coordinates for your next move: " << std::endl;
+	std::cin >> x;
+	std::cin >> y;
+	std::cout << std::endl;
+
+
+
+	if ((x >= 0 && x < 3) && (y >= 0 && y < 3))
+	{
+		board->set(colour, x, y);
+	}
+
+	return true;
 }

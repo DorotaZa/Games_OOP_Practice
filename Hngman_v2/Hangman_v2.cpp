@@ -79,7 +79,7 @@ bool Hangman::guess(char c)
 		std::cout << "Oooooops! The word doesn't include " << c << ". Try again!" << std::endl;
 		std::cout << "You've got " << attempt << " attempts left." << std::endl;
 	}
-	return guessWord == secret;
+	return (guessWord == secret) || attempt == 0;
 
 }
 
@@ -110,57 +110,64 @@ std::string Hangman::getSecret()
 
 void Hangman::drawHangman()
 {
-	switch (attempt)
-	{
-	case 4:
-		std::cout << "   -------    " << std::endl;
-		std::cout << "   |     |    " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "  _|_         " << std::endl;
-		break;
 
-	case 3:
-		std::cout << "   -------    " << std::endl;
-		std::cout << "   |     |    " << std::endl;
-		std::cout << "   |     O    " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "  _|_         " << std::endl;
+		
+		switch (attempt)
+		{
+		
+		case 4:
+			std::cout << "   -------    " << std::endl;
+			std::cout << "   |     |    " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "  _|_         " << std::endl;
+			break;
 
-	case 2:
-		std::cout << "   -------    " << std::endl;
-		std::cout << "   |     |    " << std::endl;
-		std::cout << "   |     O    " << std::endl;
-		std::cout << "   |    /|\\  " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "  _|_         " << std::endl;
+		case 3:
+			std::cout << "   -------    " << std::endl;
+			std::cout << "   |     |    " << std::endl;
+			std::cout << "   |     O    " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "  _|_         " << std::endl;
+			break;
 
-	case 1:
-		std::cout << "   -------    " << std::endl;
-		std::cout << "   |     |    " << std::endl;
-		std::cout << "   |     O    " << std::endl;
-		std::cout << "   |    /|\\  " << std::endl;
-		std::cout << "   |     |    " << std::endl;
-		std::cout << "   |          " << std::endl;
-		std::cout << "  _|_         " << std::endl;
+		case 2:
+			std::cout << "   -------    " << std::endl;
+			std::cout << "   |     |    " << std::endl;
+			std::cout << "   |     O    " << std::endl;
+			std::cout << "   |    /|\\  " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "  _|_         " << std::endl;
+			break;
 
-		break;
+		case 1:
+			std::cout << "   -------    " << std::endl;
+			std::cout << "   |     |    " << std::endl;
+			std::cout << "   |     O    " << std::endl;
+			std::cout << "   |    /|\\  " << std::endl;
+			std::cout << "   |     |    " << std::endl;
+			std::cout << "   |          " << std::endl;
+			std::cout << "  _|_         " << std::endl;
+			break;
 
-	case 0:
-		std::cout << "   -------    " << std::endl;
-		std::cout << "   |     |    " << std::endl;
-		std::cout << "   |     O    " << std::endl;
-		std::cout << "   |    /|\\  " << std::endl;
-		std::cout << "   |     |    " << std::endl;
-		std::cout << "   |    / \\  " << std::endl;
-		std::cout << "  _|_         " << std::endl;
-	}
 
+		case 0:
+			std::cout << "   -------    " << std::endl;
+			std::cout << "   |     |    " << std::endl;
+			std::cout << "   |     O    " << std::endl;
+			std::cout << "   |    /|\\  " << std::endl;
+			std::cout << "   |     |    " << std::endl;
+			std::cout << "   |    / \\  " << std::endl;
+			std::cout << "  _|_         " << std::endl;
+			break;
+		}
+		
+	
 }
 
 
