@@ -50,44 +50,63 @@ std::string Wordle::test(std::string guess)
 	
 	return std::string(); // ktos probuje odgadnac haslo po 6 probie - nie powinnismys sie tutaj dostac, ale better safe than sorry; przezorny zawsze ubezpieczony
 }
-
-void Wordle::draw()
+bool Wordle::isFinished()
 {
-	//std::cout << "\033[0;32mOUTPUT\033[0m";
-	//system("cls");// czysci 'linijke wpisywania', zeby jej nie powtarzac przy wypisywaniu z petla z kolorami
-	
-	
+	if (attempt == 0)
+		return false;
+
+	return (attempt == 6) || (answers[attempt - 1] == "GGGGG");
+	//if (attempt == 6 || answers[attempt - 1] == "GGGGG")
+	//	return true;
+	//else 
+	//	return false;
+}
+
+//void Wordle::draw()
+//{
+//	for (int i = 0; i < attempt; i++) //6 bo mamy 6 wierszy
+//	{
+//		std::cout << guesses[i] << "\t" << answers[i] << std::endl;
+//	}
+//}
+
+void Wordle::draw1()
+{
+
 	for (int i = 0; i < attempt; i++) //6 bo mamy 6 wierszy
 	{
-		std::cout << answers[i] << '\t';
-
+		
 		for (int j = 0; j < 5; ++j)
 		{
-			if (guesses[i][j] == 'G')
+			if (answers[i][j] == 'G')
 			{
-				std::cout << "\033[0;32mG\033[0m";
+				//std::cout << "\033[0;32mG\033[0m";
+				std::cout << "\033[0;32m" << guesses[i][j] << "\033[0m";
 			}
-			else if (guesses[i][j] == 'O')
+			else if (answers[i][j] == 'O')
 			{
-				std::cout << "\033[0;33mO\033[0m";
+				//std::cout << "\033[0;33mO\033[0m";
+				std::cout << "\033[0;33m" << guesses[i][j] << "\033[0m";
 			}
 			else
 			{
-				std::cout << "\033[0;37mB\033[0m";
+				//std::cout << "\033[0;37mB\033[0m";
+				std::cout << "\033[0;37m" << guesses[i][j] << "\033[0m";
 			}
 		}
+		std::cout << "\t";
+		std::cout << answers[i];
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
-	
 }
 
-//
-//void Wordle::draw()
+//void Wordle::draw2()
 //{
-//	
+//	//std::cout << "\033[0;32mOUTPUT\033[0m";
 //	//system("cls");// czysci 'linijke wpisywania', zeby jej nie powtarzac przy wypisywaniu z petla z kolorami
 //
-//	for (int i = 0; i < attempt; ++i)
+//
+//	for (int i = 0; i < attempt; i++) //6 bo mamy 6 wierszy
 //	{
 //		std::cout << guesses[i] << '\t';
 //
@@ -106,21 +125,10 @@ void Wordle::draw()
 //				std::cout << "\033[0;37mB\033[0m";
 //			}
 //		}
-//		std::cout << std::endl;
 //	}
+//	std::cout << std::endl;
 //
 //}
 
 
-bool Wordle::isFinished()
-{
-	if (attempt == 0)
-		return false;
-
-	return (attempt == 6) || (answers[attempt - 1] == "GGGGG");
-	//if (attempt == 6 || answers[attempt - 1] == "GGGGG")
-	//	return true;
-	//else 
-	//	return false;
-}
 

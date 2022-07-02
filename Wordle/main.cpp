@@ -13,7 +13,9 @@ int main()
 		std::cin >> word;
 		std::string colours = game.test(word);
 		//std::cout << colours << std::endl;
-		game.draw();
+		//game.draw();
+		game.draw1();
+		//game.draw2();
 	} while (!game.isFinished());
 
 	return 0;

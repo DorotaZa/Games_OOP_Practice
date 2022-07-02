@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Hangman_v2.hpp"
 #include <string>
+#include <fstream>
+#include <ctime> //srand
 
 int main()
 
@@ -14,7 +16,6 @@ int main()
 
     do
     {
-        
         std::string guess = game.getGuess(); //zwrocic _A___A_
         std::cout << guess << std::endl;;
         std::string alphabet = game.getAlphabet(); // zwraca _BCDE
@@ -31,10 +32,8 @@ int main()
 
     } while (!finished/*&& attempt > 0*/);
     // !while (finished || attempt <= 0);! //prawo de Morgana
-
+    std::cout << "Oooops! GAME OVER!!!" << std::endl;
     std::cout << "Secret keyword was: " << game.getSecret() <<std::endl;
-    //game.drawHangman();
-
 }
 
 

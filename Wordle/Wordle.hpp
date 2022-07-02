@@ -15,7 +15,9 @@ class Wordle
 public:
 	Wordle(std::string secret);
 	std::string test(std::string guess);
-	void draw(); // wypisz obie tablice, jedna obok drugiej + na poczatku wyczyscic ekran
+	//void draw(); // wypisz obie tablice, jedna obok drugiej + na poczatku wyczyscic ekran
+	void draw1();
+	//void draw2();
 	bool isFinished(); // sprawdzamy czy ostatnie zgadniete slowo to secret oraz porownac liczbe attempt
 	//bool isFinished(std::string guess); // sprawdzamy czy slowo to secret oraz porownac liczbe attempt
 	//bool isFinished(std::string colours); // sprawdzamy czy slowo to "GGGGG"

@@ -5,18 +5,49 @@ Hangman::Hangman(std::string secret)
 {
 	this->secret = secret;
 	this->guessWord = secret; //nadpisanie zeby taka sam ilosc liter byla
+	srand(time(NULL));
+	std::ifstream randomWord;
+	randomWord.open("Words.txt");
+
+	for (int i = 0; i < 99; ++i)
+	{
+		randomWord >> wordList[i];
+		std::cout << wordList[i] << std::endl;
+	}
+
+	/*int randomNum = rand() % 100;
+	secret = wordList[randomNum];
+	std::cout << secret << std::endl;
+	randomWord.close();*/
+
+	this->guessWord = secret;
 	for (int i = 0; i < secret.length(); ++i)
 	{
 		guessWord[i] = '_';
-		//guessWord[i] = ' '; //to nie dziala bo jest przypisanie innej wartosci 
-
-
 	}
+
 	for (int i = 0; i < 26; ++i)
 	{
 		alphabet[i] = false;
 	}
 }
+
+//Hangman::Hangman(std::string secret)
+//{
+//	this->secret = secret;
+//	this->guessWord = secret; //nadpisanie zeby taka sam ilosc liter byla
+//	for (int i = 0; i < secret.length(); ++i)
+//	{
+//		guessWord[i] = '_';
+//		//guessWord[i] = ' '; //spacja miedzy literami tutaj nie dziala, bo to jest przypisanie innej wartosci 
+//
+//
+//	}
+//	for (int i = 0; i < 26; ++i)
+//	{
+//		alphabet[i] = false;
+//	}
+//}
 
 std::string Hangman::getGuess()
 {
@@ -32,7 +63,7 @@ std::string Hangman::getAlphabet()
 		if (!alphabet[i])
 		{
 			result += 'a' + i;
-			result += ' ';
+			result += ' '; //spacja miedzy literami tutaj dziala, bo nie ma = tylko +=
 		}
 		else
 		{
@@ -169,6 +200,19 @@ void Hangman::drawHangman()
 		
 	
 }
+
+std::string Hangman::getRandom()
+{
+	return std::string();
+}
+
+
+
+
+
+
+
+
 
 
 	/*std::cout << "   -------    " << std::endl;
